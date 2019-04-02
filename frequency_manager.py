@@ -24,11 +24,16 @@ class frequency_event:
 
 
 def updateData():
+    """
+    Main frequency data updating function.
+    """
     def getLastIteration():
+        #Will keep track of additions to database
         with open(Path("_data/last_iteration.txt"), "r") as iterFile:
             last_iteration = iterFile.read()
         return last_iteration
     def setLastIteration(backup=True):
+        #Will update number of additions to database
         with open(Path("_data/last_iteration.txt"), "w") as iterFile:
             last_iteration = iterFile.write(newer_iteration)
         if backup:
