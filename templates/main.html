@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <title></title>
+    </head>
+    <body>
+
+        <div class="menu_wrapper">
+            <a href="#" class="slider_trigger">Menu</a>
+            <div class="slider_parent">
+                <h1>Menu</h1>
+                <a href="/home">Home</a><br>
+                <a href="#">Frequency</a><br>
+                <a href="#">Lendings</a><br>
+                <a href="#">Notice Board</a><br>
+                <a href="#">News</a><br>
+                <a href="#">Calendar</a><br>
+                <a href="#">About</a>
+            </div>
+        </div>
+
+        <script>
+            var sliderTrigger = document.getElementsByClassName("slider_trigger") [0];
+            var slider = document.getElementsByClassName("slider_parent") [0];
+
+            sliderTrigger.addEventListener( "click", function() {
+                if(slider.classList.contains("active")) {
+                    slider.classList.remove("active");
+                }else{
+                    slider.classList.add("active");
+                }
+            });
+        </script>
+    </body>
+</html>

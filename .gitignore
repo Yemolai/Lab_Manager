@@ -1,4 +1,7 @@
+.vscode/
 _oldVersions/
 _testFiles/
 _images/
 _data/json_database.json
+venv/
+testfile.py

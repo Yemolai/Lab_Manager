@@ -43,15 +43,15 @@ def updateDataByCSV():
         # Called to add entries to JSON on the specified format.
         # Hints from https://stackoverflow.com/questions/12994442/how-to-append-data-to-a-json-file
         with open(Path("_data/json_database.json"), "ab+") as JSONFile:
-            JSONFile.seek(0,2)                                      #Go to the end of file
-            if JSONFile.tell() == 0:                                #Check if file is empty
-                JSONFile.write(json.dumps([dict_object], default=lambda x: x.__dict__).encode())  #If empty, write an array
+            JSONFile.seek(0,2)                                                                              #Go to the end of file
+            if JSONFile.tell() == 0:                                                                        #Check if file is empty
+                JSONFile.write(json.dumps([dict_object], default=lambda x: x.__dict__).encode())            #If empty, write an array
             else:
                 JSONFile.seek(-1,2)
-                JSONFile.truncate()                                  #Remove the last character, open the array
-                JSONFile.write(' , '.encode())                                #Write the separator
+                JSONFile.truncate()                                                                         #Remove the last character, open the array
+                JSONFile.write(' , '.encode())                                                              #Write the separator
                 JSONFile.write(json.dumps(dict_object, default=lambda x: x.__dict__).encode())              #Dump the dictionary
-                JSONFile.write(']'.encode())                                  #Close the array
+                JSONFile.write(']'.encode())                                                                #Close the array
     def getCSV(last_iteration):
         # Generator for retrieving CSV data and appending to JSON.
         # Requires the last iteration as argument
