@@ -2,22 +2,31 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-        <title></title>
+        {% block head %}{% endblock %}
+        {% if title %}
+            <title>{{ title }}</title>
+        {% else %}
+            <title>Laboratory Manager</title>
+        {% endif %}
     </head>
     <body>
-
         <div class="menu_wrapper">
             <a href="#" class="slider_trigger">Menu</a>
             <div class="slider_parent">
-                <h1>Menu</h1>
+                <h1>Welcome</h1>
                 <a href="/home">Home</a><br>
-                <a href="#">Frequency</a><br>
-                <a href="#">Lendings</a><br>
-                <a href="#">Notice Board</a><br>
-                <a href="#">News</a><br>
-                <a href="#">Calendar</a><br>
-                <a href="#">About</a>
+                <a href="/frequency">Frequency</a><br>
+                <a href="/lendings">Lendings</a><br>
+                <a href="/technical">Technical Problems</a><br>
+                <a href="/notices">Notice Board</a><br>
+                <a href="/news">News</a><br>
+                <a href="/calendar">Calendar</a><br>
+                <a href="/about">About</a>
             </div>
+        </div>
+
+        <div class="page_content">
+            {% block content %}{% endblock %}
         </div>
 
         <script>

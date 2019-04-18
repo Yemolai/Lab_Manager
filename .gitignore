@@ -1,7 +1,9 @@
 .vscode/
+venv/
+__pycache__/
 _oldVersions/
 _testFiles/
 _images/
 _data/json_database.json
-venv/
+static/labicon.png
 testfile.py
