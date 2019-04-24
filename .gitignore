@@ -6,4 +6,5 @@ _testFiles/
 _images/
 _data/json_database.json
 static/labicon.png
+static/microscopeicon.png
 testfile.py

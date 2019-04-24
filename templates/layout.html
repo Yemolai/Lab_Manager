@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
         {% block head %}{% endblock %}
         {% if title %}
             <title>{{ title }}</title>
@@ -10,28 +12,89 @@
         {% endif %}
     </head>
     <body>
-        <div class="menu_wrapper">
-            <a href="#" class="slider_trigger">Menu</a>
-            <div class="slider_parent">
-                <h1>Welcome</h1>
-                <a href="/home">Home</a><br>
-                <a href="/frequency">Frequency</a><br>
-                <a href="/lendings">Lendings</a><br>
-                <a href="/technical">Technical Problems</a><br>
-                <a href="/notices">Notice Board</a><br>
-                <a href="/news">News</a><br>
-                <a href="/calendar">Calendar</a><br>
-                <a href="/about">About</a>
+        <!-- Danger Zone -->
+        <nav class="flex items-baseline justify-between bg-blue-light p-6">
+            <div class="flex items-center flex-no-shrink text-white mr-6">
+                <span class="font-semibold text-xl tracking-tight addborders">Laboratory Manager</span>
             </div>
-        </div>
+            <div class="block md:hidden">
+                <button id="menu-button" onclick="dropdown()" class="bg-blue-lighter hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded">
+                    Menu
+                </button>
+                <div id="nav-dropdown" class="font-semibold absolute object-none object-right lg:flex-grow bg-blue-lighter border-blue rounded hidden">
+                    <a href="/home" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mt-4 ml-2 mr-4">
+                        Home
+                    </a>
+                    <a href="/frequency" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mt-4 ml-2 mr-4">
+                        Frequency
+                    </a>
+                    <a href="/lendings" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mt-4 ml-2 mr-4">
+                        Lendings
+                    </a>
+                    <a href="/technical" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mt-4 ml-2 mr-4">
+                        Technical Problems
+                    </a>
+                    <a href="/notices" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mt-4 ml-2 mr-4">
+                        Notice Board
+                    </a>
+                    <a href="/news" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mt-4 ml-2 mr-4">
+                        News
+                    </a>
+                    <a href="/calendar" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mt-4 ml-2 mr-4">
+                        Calendar
+                    </a>
+                    <a href="/about" class="no-underline block lg:inline-block lg:mt-0 text-blue-darker hover:text-white mt-4 mb-4 ml-2 mr-4">
+                        About
+                    </a>
+                </div>
+            </div>
+            <div class="w-full block flex-grow justify-between hidden md:flex md:items-center md:w-auto">
+                <div id="nav-desktop" class="font-semibold hidden md:flex">
+                    <a href="/home" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mr-4">
+                        Home
+                    </a>
+                    <a href="/frequency" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mr-4">
+                        Frequency
+                    </a>
+                    <a href="/lendings" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mr-4">
+                        Lendings
+                    </a>
+                    <a href="/technical" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mr-4">
+                        Technical Problems
+                    </a>
+                    <a href="/notices" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mr-4">
+                        Notice Board
+                    </a>
+                    <a href="/news" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mr-4">
+                        News
+                    </a>
+                    <a href="/calendar" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mr-4">
+                        Calendar
+                    </a>
+                    <a href="/about" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-darker hover:text-white mr-4">
+                        About
+                    </a>
+                </div>
+            </div>
+            <div class="inline-block addborders">
+                <a href="/logon" class="font-semibold px-4 py-2 leading-none bg-blue-lighter border rounded text-blue-dark border-blue hover:border-transparent hover:text-white hover:bg-blue mt-4 lg:mt-0">Button</a>
+            </div>
+        </nav>
+        <!-- End of Danger Zone -->
 
-        <div class="page_content">
+        <div class="page_content addborders">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
-                        <div class="alert-div alert-{{ category }}">
-                            {{ message }}
-                        </div>
+                        {% if category == "error" %}
+                            <div class="inline-flex items-center bg-red-light rounded-lg text-white text-sm font-bold px-4 py-3">
+                                {{ message }}
+                            </div>
+                        {% else %}
+                            <div class="flex items-center bg-blue rounded-lg text-white text-sm font-bold px-4 py-3">
+                                {{ message }}
+                            </div>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
             {% endwith %}
@@ -39,16 +102,9 @@
         </div>
 
         <script>
-            var sliderTrigger = document.getElementsByClassName("slider_trigger") [0];
-            var slider = document.getElementsByClassName("slider_parent") [0];
-
-            sliderTrigger.addEventListener( "click", function() {
-                if(slider.classList.contains("active")) {
-                    slider.classList.remove("active");
-                }else{
-                    slider.classList.add("active");
-                }
-            });
+            function dropdown() {
+                document.getElementById("nav-dropdown").classList.toggle("hidden");
+            }
         </script>
     </body>
 </html>

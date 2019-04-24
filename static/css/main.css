@@ -2,6 +2,16 @@ body {
     background-color: #48cef0;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+/* a {
+    color: #3490dc;
+}
+a:visited {
+    color: #165c96;
+}
+a:hover {
+    color: #1c3d5a;
+} */
+
 .menu_wrapper {
     position: relative;
 }
@@ -35,10 +45,33 @@ body {
 .page_content {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+    .page_content .logo {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 30vw;
+        height: auto;
+    }
+
+.logbox {
+    max-height: 80vh;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 @media only screen and (min-width: 900px) {
     .page_content {
-        margin-left: 260px;
+        height: 100vh;
+        align-content: space-around;
     }  
+}
+
+/* Apply to help designing layouts,
+Erase on final version: */
+.addborders {
+    border-width: 1px;
+    border-style: dashed;
+    border-color: black;
 }

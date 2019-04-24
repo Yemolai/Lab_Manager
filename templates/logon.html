@@ -1,0 +1,155 @@
+{% extends "layout.html" %}
+{% block content %}
+    <!-- Registration form -->
+    <div class="logbox">
+        <div id="sign_up" class="hidden">
+            <div class="w-full flex items-center h-full justify-center content-center">
+                <form method="POST" action="" >
+                    {{ form_signUp.hidden_tag() }}
+                    <fieldset class="form-transition w-full max-w-sm">
+                        <legend class="text-center text-2xl pl-10 pr-10 mb-8">New User Registration</legend>
+                        <div class="form-transition w-full max-w-sm">
+                            {{ form_signUp.username.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                            {% if form_signUp.username.errors %}
+                                {{ form_signUp.username(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                                <div>
+                                    {% for error in form_signUp.username.errors %}
+                                        <span class="inline-block text-red text-sm">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form_signUp.username(class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-transition w-full max-w-sm">
+                            {{ form_signUp.email.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                            {% if form_signUp.email.errors %}
+                                {{ form_signUp.email(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                                <div">
+                                    {% for error in form_signUp.email.errors %}
+                                        <span class="inline-block text-red text-sm">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form_signUp.email(class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-transition w-full max-w-sm">
+                            {{ form_signUp.password.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                            {% if form_signUp.password.errors %}
+                                {{ form_signUp.password(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                                <div class="invalid-input-feedback">
+                                    {% for error in form_signUp.password.errors%}
+                                        <span class="inline-block text-red text-sm">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form_signUp.password(class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-transition w-full max-w-sm">
+                            {{ form_signUp.confirm_password.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                            {% if form_signUp.confirm_password.errors %}
+                                {{ form_signUp.confirm_password(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                                <div class="invalid-input-feedback">
+                                    {% for error in form_signUp.confirm_password.errors %}
+                                        <span class="inline-block text-red text-sm">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form_signUp.confirm_password(class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                    <div class="md:flex md:items-center">
+                        <div class="md:w-1/3"></div>
+                        <div class="md:w-2/3">
+                            {{ form_signUp.submit_signUp(class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 mt-5 rounded focus:outline-none") }}
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <small>
+                            Already registred? <a href="#" onclick="javascript:swapForm()">Sign In</a>.
+                        </small>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Login form -->
+        <div id="sign_in">
+            <div class="w-full flex items-center h-full justify-center content-center">
+                <form method="POST" action="">
+                    {{ form_signIn.hidden_tag() }}
+                    <fieldset class="form-transition w-full max-w-sm">
+                        <legend class="text-center text-2xl pl-10 pr-10 mb-8">Log In</legend>
+                        <div class="form-transition w-full max-w-sm">
+                            {{ form_signIn.email.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                            {% if form_signIn.email.errors %}
+                                {{ form_signIn.email(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                                <div>
+                                    {% for error in form_signIn.email.errors %}
+                                        <span class="inline-block text-red text-sm">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form_signIn.email(class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-transition w-full max-w-sm">
+                            {{ form_signIn.password.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                            {% if form_signIn.password.errors %}
+                                {{ form_signIn.password(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                                <div>
+                                    {% for error in form_signIn.password.errors%}
+                                        <span class="inline-block text-red text-sm">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form_signIn.password(class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            {% endif %}
+                        </div>
+                        <div class="md:flex md:items-center mb-6">
+                            {{ form_signIn.remember_me(class="mr-2 leading-tight") }}
+                            {{ form_signIn.remember_me.label(class="block text-grey-darkest text-sm font-bold") }}
+                        </div>
+                    </fieldset>
+                    <div class="flex flex-col justify-between content-center items-center">
+                        <div>
+                            {{ form_signIn.submit_signIn(class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 mb-6 rounded focus:outline-none") }}
+                        </div>
+                        <button id="forgot-password" class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" type="button">
+                            Forgot Password?
+                        </button>
+                    </div>
+                    <div class="text-center mt-4">
+                        <small>
+                            Need an account? <a href="#" onclick="javascript:swapForm()">Sign Up</a>.
+                        </small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function swapForm() {
+            document.getElementById("sign_up").classList.toggle("hidden")
+            document.getElementById("sign_in").classList.toggle("hidden")
+            if (document.getElementById("sign_up").classList.contains("hidden")) {
+                localStorage.setItem("hide_signUp", true)
+            } else {
+                localStorage.setItem("hide_signUp", false)
+            }
+        };
+
+        window.onload = () => {
+            if (localStorage.getItem("hide_signUp" == true)) {
+                document.getElementById("sign_up").classList.add("hidden")
+                document.getElementById("sign_in").classList.remove("hidden")
+            } else {
+                document.getElementById("sign_up").classList.remove("hidden")
+                document.getElementById("sign_in").classList.add("hidden")
+            }
+        };
+    </script>
+{% endblock content %}

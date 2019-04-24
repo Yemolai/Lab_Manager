@@ -38,26 +38,20 @@ def calendar():
 def about():
     return render_template("about.html", title="About")
 
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    #Create instance of form to send to the application
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        flash(f"Account created for {form.username.data}.", "flash-success")
+@app.route("/logon", methods=["GET", "POST"])
+def logon():
+    form_signUp = RegistrationForm()
+    form_signIn = LoginForm()
+    if form_signUp.submit_signUp.data and form_signUp.validate():
+        flash(f"Account created for {form_signUp.username.data}. You can now Log In.", "success")
         return redirect(url_for("home"))
-    #Pass the form as an argument to render_template()
-    return render_template("signup.html", title="User Registration", form=form)
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        if form.email.data == "dummyemail@email.com" and form.password.data == "password": #Change this to appropriate database calls
-            flash("You have been logged in!", "flash-success")
+    if form_signIn.submit_signIn.data and form_signIn.validate():
+        if form_signIn.email.data == "dummyemail@email.com" and form_signIn.password.data == "password": #Change this to appropriate database calls
+            flash("You have been logged in!", "success")
             return redirect(url_for("home"))
         else:
-            flash("Login Unsuccessful. Please check credentials.", "flash-fail")
-    return render_template("signin.html", title="User Login", form=form)
+            flash("Login Unsuccessful. Please check your credentials.", "error")
+    return render_template("logon.html", title="User Login", form_signUp=form_signUp, form_signIn=form_signIn)
 
 if __name__ == '__main__':
     app.run(debug=True)
