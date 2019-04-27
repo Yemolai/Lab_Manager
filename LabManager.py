@@ -103,15 +103,24 @@ def about():
 def logon():
     form_signUp = RegistrationForm()
     form_signIn = LoginForm()
+
+    # Account successfully created
     if form_signUp.submit_signUp.data and form_signUp.validate():
         flash(f"Account created for {form_signUp.username.data}. You can now Log In.", "success")
-        return redirect(url_for("home"))
+        return redirect(url_for("home")) # redirect to home
+    
+    # User successfully logged in
     if form_signIn.submit_signIn.data and form_signIn.validate():
-        if form_signIn.email.data == "dummyemail@email.com" and form_signIn.password.data == "password": #Change this to appropriate database calls
+        passw = form_signIn.password.data
+        email = form_signIn.email.data
+        default_email = "dummyemail@email.com"
+        default_passw = "password"
+        # Change this to appropriate database calls
+        if email == default_email and passw == default_passw:
             flash("You have been logged in!", "success")
             return redirect(url_for("home"))
         else:
-            flash("Login Unsuccessful. Please check your credentials.", "error")
+            flash("Invalid credentials.", "error")
     return render_template("logon.html", title="User Login", form_signUp=form_signUp, form_signIn=form_signIn)
 
 if __name__ == '__main__':
