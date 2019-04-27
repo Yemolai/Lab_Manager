@@ -132,23 +132,81 @@
     </div>
 
     <script>
-        function swapForm() {
-            document.getElementById("sign_up").classList.toggle("hidden")
-            document.getElementById("sign_in").classList.toggle("hidden")
-            if (document.getElementById("sign_up").classList.contains("hidden")) {
-                localStorage.setItem("hide_signUp", true)
-            } else {
-                localStorage.setItem("hide_signUp", false)
+        const state_name = "state"
+        
+        const default_state = {
+            hide_sign_up: true,
+        }
+        
+        const sign_up = document.getElementById("sign_up")
+
+        const sign_in = document.getElementById("sign_in")
+        
+        function loadState () {
+            const raw_state = localStorage.getItem(state_name)
+
+            try {
+                const state = JSON.parse(raw_state)
+            
+                if (state === null) {
+                    saveState(true)
+
+                    return default_state
+                }
+                
+                return state
+            } catch (err) {
+                console.warn("error while loading state:", err)
+
+                saveState(true)
+
+                return default_state
             }
+        }
+        
+        function saveState (use_default_state) {
+            if (use_default_state) {
+                const serialized_state = JSON.stringify(default_state)
+
+                return localStorage.setItem(state_name, serialized_state)
+            }
+
+            const sign_up_hidden = sign_up.classList.contains("hidden")
+            
+            const new_state = { hide_sign_up: sign_up_hidden === true }
+            
+            const raw_new_state = JSON.stringify(new_state)
+
+            localStorage.setItem(state_name, raw_new_state)
+        }
+
+        function swapForm() {
+            sign_up.classList.toggle("hidden")
+
+            sign_in.classList.toggle("hidden")
+            
+            saveState()
         };
+        
+        function hide(el) {
+            el.classList.add("hidden")
+        }
+        
+        function show(el) {
+            el.classList.remove("hidden")
+        }
 
         window.onload = () => {
-            if (localStorage.getItem("hide_signUp" == true)) {
-                document.getElementById("sign_up").classList.add("hidden")
-                document.getElementById("sign_in").classList.remove("hidden")
+            var state = loadState()
+
+            if (state.hide_sign_up === true) {
+                hide(sign_up)
+
+                show(sign_in)
             } else {
-                document.getElementById("sign_up").classList.remove("hidden")
-                document.getElementById("sign_in").classList.add("hidden")
+                show(sign_up)
+
+                hide(sign_in)
             }
         };
     </script>
