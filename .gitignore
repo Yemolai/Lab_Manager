@@ -1,16 +1,12 @@
 # Custom files to be ignored
-__pycache__/
 .vscode/
 venv/
-_oldVersions/
 _testFiles/
-_images/
-_data/
-_data/json_database.json
-static/labicon.png
-static/microscopeicon.png
-testfile.py
-app.db 
+__pycache__/
+LabManager/__pycache__/
+LabManager/_data/
+LabManager/_data/json_database.json
+LabManager/app.db 
 bfg.jar
 bfg.java
 *.pyc
