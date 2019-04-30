@@ -12,7 +12,12 @@ def home():
 @app.route("/frequency")
 @login_required
 def frequency():
-    return render_template("frequency.html", title="Personel Frequency")
+    return render_template("frequency.html", title="Laboratory Frequency")
+
+@app.route("/personnel")
+@login_required
+def personnel():
+    return render_template("personnel.html", title="Laboratory Personnel")
 
 @app.route("/lendings")
 @login_required
@@ -23,6 +28,16 @@ def lendings():
 @login_required
 def technical():
     return render_template("technical.html", title="Technical Issues")
+
+@app.route("/inventory")
+@login_required
+def inventory():
+    return render_template("inventory.html", title="Equipment Inventory")
+
+@app.route("/fieldtrips")
+@login_required
+def fieldtrips():
+    return render_template("fieldtrips.html", title="Field Trips")
 
 @app.route("/notices")
 @login_required
@@ -73,3 +88,8 @@ def logon():
 def logout():
     logout_user()
     return redirect(url_for("home"))
+
+@app.route("/account")
+@login_required
+def account():
+    return render_template("account.html", title="User Account")

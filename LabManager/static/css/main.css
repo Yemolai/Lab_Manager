@@ -1,5 +1,6 @@
 body {
     background-color: #48cef0;
+    color: #081c2c;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 /* a {
@@ -12,14 +13,18 @@ a:hover {
     color: #1c3d5a;
 } */
 
-.menu_wrapper {
+#app-title {
+    font-family: 'Allerta Stencil', sans-serif;
+    color: #03365f;
+}
+
+.nav-wrapper {
     position: relative;
 }
-    .menu_wrapper .slider_parent {
+    .nav-wrapper .slider_parent {
         height: 70vh;
         max-width: 250px;
         width: 100%;
-        background: #ffffff;
         position: absolute;
         left: -250px;
         top: 50px;
@@ -30,28 +35,55 @@ a:hover {
         text-align: left;
         padding-left: 10px;
     }
-    .menu_wrapper .slider_parent.active {
+    .nav-wrapper .slider_parent.active {
         visibility: visible;
         pointer-events: inherit;
         transition: .2s all ease-in-out;
         opacity: 0.85;
         left: 0;
     }
-    .menu_wrapper .slider_parent h1 {
+    .nav-wrapper .slider_parent h1 {
         font-size: 1em;
         text-align: center;
     }
 
-.page_content {
+.page-wrapper {
+    width: 100vw;
     display: flex;
+    flex-direction: row;    
+}
+
+.side-menu {
+    flex-basis: 80vh;
+    background-color: #48cef0;
+    border-top: 2px solid #081c2c;
+    border-right: 1px solid #081c2c;
+}
+    .side-menu h1 {
+        margin-top: 3px;
+        text-align: center;
+        font-family: 'Oxygen', sans-serif;
+        font-weight: 600;
+    }
+    .side-menu h2 {
+        font-family: 'Oxygen', sans-serif;
+        font-weight: 500;
+    }
+
+.main {
+    height: 100vh;
+    display: flex;
+    flex-basis: 100vw;
     flex-direction: column;
     justify-content: space-between;
+    background-color: #ffffff;
+    border-top: 2px solid #081c2c;
     text-align: center;
 }
-    .page_content .logo {
+    .main .logo {
         margin-left: auto;
         margin-right: auto;
-        max-width: 30vw;
+        max-width: 80vw;
         height: auto;
     }
 
@@ -62,10 +94,21 @@ a:hover {
 }
 
 @media only screen and (min-width: 900px) {
-    .page_content {
+    .page-wrapper {
         height: 100vh;
         align-content: space-around;
-    }  
+    }
+    
+    .side-menu {
+        flex-basis: 25vw;
+    }
+
+    .main {
+        flex-basis: 74cw;
+    }
+    .main .logo {
+        max-width: 30vw;
+    }
 }
 
 /* Apply to help designing layouts,

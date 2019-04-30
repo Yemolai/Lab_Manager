@@ -1,9 +1,8 @@
 {% extends "layout.html" %}
-{% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-{% endblock head %}
 {% block content %}
     <h1>Laboratory Manager</h1>
-    <img class="logo" src="{{ url_for('static', filename='lablogo.png') }}">
+    <div>
+        <img class="logo" src="{{ url_for('static', filename='lablogo.png') }}">
+    </div>
     <small>Powered by Pyhton</small>
 {% endblock %}
