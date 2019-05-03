@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from flask_login import UserMixin
 from LabManager import db, login_manager
@@ -12,6 +13,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    image_filepath = db.Column(db.String, nullable=False, default=os.path.join("static/profile_pics", "default.jpg"))
     password = db.Column(db.String(60), nullable=False)
     notices = db.relationship('Notice', backref='author', lazy=True)
 

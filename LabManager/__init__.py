@@ -10,6 +10,7 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = "logon"
+login_manager.login_message = "This page is restricted. Please login to access."
 
 #This import come at the end to avoid circular imports
 from LabManager import routes

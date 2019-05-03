@@ -100,11 +100,11 @@ a:hover {
     }
     
     .side-menu {
-        flex-basis: 25vw;
+        flex-basis: 22vw;
     }
 
     .main {
-        flex-basis: 74cw;
+        flex-basis: 100%;
     }
     .main .logo {
         max-width: 30vw;
