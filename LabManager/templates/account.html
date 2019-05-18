@@ -5,10 +5,21 @@
         <div class="sticky flex flex-row self-center w-auto mt-5">
             <img src="{{ image_file }}" class="rounded-full">
             <div class="flex flex-col ml-4 mr-4">
-                <h2>{{ current_user.username }}</h2>
+                <h2 class="font-semibold">{{ current_user.username }}</h2>
                 <p>{{ current_user.email }}</p>
-                <button onclick="javascript:showForm()" class="absolute pin-r pin-b bg-blue hover:bg-blue-dark text-sm text-white py-2 px-4 mt-5 rounded focus:outline-none">
-                    Update information?
+
+                {% if requires_update %}
+                    <div>
+                        <p>Your personal information has not been updated yet.</p>
+                    </div>
+                {% else %}
+                    <div>
+                        <p>You have already updated your data. Browse it?</p>
+                    </div>
+                {% endif %}
+            
+                <button onclick="javascript:showForm()" class="w-2/5 inline-block self-center bg-blue-400 hover:bg-blue-600 text-gray-300 font-bold p-2 mt-2 rounded focus:outline-none">
+                    Show my info
                 </button>
             </div>
         </div>
@@ -20,7 +31,7 @@
 
                 <fieldset>
 
-                    <legend class="font-semibold mb-4">Update Account Information</legend>
+                    <legend class="font-semibold mb-4">Update Your Information</legend>
 
                     <div>
                         {{ form.username.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
@@ -28,7 +39,7 @@
                             {{ form.username(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
                             <div>
                                 {% for error in form.username.errors %}
-                                    <span class="inline-block text-red text-sm">{{ error }}</span>
+                                    <span class="inline-block text-red-600 text-sm">{{ error }}</span>
                                 {% endfor %}
                             </div>
                         {% else %}
@@ -42,7 +53,7 @@
                             {{ form.email(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
                             <div>
                                 {% for error in form.email.errors %}
-                                    <span class="inline-block text-red text-sm">{{ error }}</span>
+                                    <span class="inline-block text-red-600 text-sm">{{ error }}</span>
                                 {% endfor %}
                             </div>
                         {% else %}
@@ -61,12 +72,122 @@
                         {% endif %}
                     </div>
 
+                    <div class="mt-4">
+                        {{ form.first_name.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                        {% if form.first_name.errors %}
+                            {{ form.first_name(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            <div>
+                                {% for error in form.first_name.errors %}
+                                    <span class="inline-block text-red-600 text-sm">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.first_name(placeholder="This field is required", class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        {{ form.middle_name.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                        {% if form.middle_name.errors %}
+                            {{ form.middle_name(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            <div>
+                                {% for error in form.middle_name.errors %}
+                                    <span class="inline-block text-red-600 text-sm">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.middle_name(placeholder="This field optional", class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        {{ form.last_name.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                        {% if form.last_name.errors %}
+                            {{ form.last_name(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            <div>
+                                {% for error in form.last_name.errors %}
+                                    <span class="inline-block text-red-600 text-sm">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.last_name(placeholder="This field is required", class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        {{ form.sex.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                        {% if form.sex.errors %}
+                            {{ form.sex(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            <div>
+                                {% for error in form.sex.errors %}
+                                    <span class="inline-block text-red-600 text-sm">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.sex(class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        {{ form.phone.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                        {% if form.phone.errors %}
+                            {{ form.phone(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            <div>
+                                {% for error in form.phone.errors %}
+                                    <span class="inline-block text-red-600 text-sm">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.phone(placeholder="(123)-456-78-90", class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        {{ form.birthday.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                        {% if form.birthday.errors %}
+                            {{ form.birthday(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            <div>
+                                {% for error in form.birthday.errors %}
+                                    <span class="inline-block text-red-600 text-sm">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.birthday(placeholder="yyy-mm-dd", class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        {{ form.occupation.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                        {% if form.occupation.errors %}
+                            {{ form.occupation(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            <div>
+                                {% for error in form.occupation.errors %}
+                                    <span class="inline-block text-red-600 text-sm">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.occupation(placeholder="Your current occupation at the laboratory", class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        {{ form.institution.label(class="block text-grey-darkest text-sm font-bold mt-3 mb-2") }}
+                        {% if form.institution.errors %}
+                            {{ form.institution(class="shadow appearance-none bg-red-lighter rounded-lg red-light w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                            <div>
+                                {% for error in form.institution.errors %}
+                                    <span class="inline-block text-red-600 text-sm">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.institution(placeholder="The current Institution you belong to", class="shadow appearance-none rounded-lg w-full py-2 px-3 mb-2 text-grey-darkest leading-tight focus:outline-none") }}
+                        {% endif %}
+                    </div>
+
                 </fieldset>
 
-                <div class="flex flex-col justify-between content-center items-center mt-4">
-                    <div>
-                        {{ form.submit(class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 mt-5 rounded focus:outline-none") }}
-                    </div>
+                <div class="mt-10 mb-4">
+                    {{ form.submit(class="bg-blue-400 hover:bg-blue-600 text-gray-300 font-bold py-2 px-4 rounded focus:outline-none") }}
                 </div>
 
             </form>

@@ -4,9 +4,11 @@ venv/
 _testFiles/
 __pycache__/
 LabManager/__pycache__/
+LabManager/static/profile_pics/
 LabManager/_data/
 LabManager/_data/json_database.json
 LabManager/app.db 
+dbDraft.xlsx
 bfg.jar
 bfg.java
 *.pyc
