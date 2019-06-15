@@ -2,8 +2,6 @@
 .vscode/
 venv/
 _testFiles/
-__pycache__/
-LabManager/__pycache__/
 LabManager/static/profile_pics/
 LabManager/_data/
 LabManager/_data/json_database.json
@@ -15,7 +13,7 @@ bfg.java
 *.pyo
 
 # Byte-compiled / optimized / DLL files
-__pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 
