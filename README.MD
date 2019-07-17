@@ -1,6 +1,6 @@
-# Lab Manager #
+# Laborator.io #
 
-This is a Lab Manager, to install its dependencies please try to use the
+This is a Laboratory Manager, to install its dependencies please try to use the
 virtualenv tool, installing it with pip and installing required dependencies
 from the `requirements.txt` file contained within this repository.
 
