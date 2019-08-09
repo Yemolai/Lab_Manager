@@ -1,0 +1,16 @@
+All images used on this project were made available
+on the Public Domain at Wikimedia Commons and similar
+sources, under the CC0 1.0 Universal Public Domain
+Dedication or other similar public licenses, and
+can be used freely. URLs for source files are provided
+below:
+
+File: lablogo.png
+URL: https://commons.wikimedia.org/wiki/File:Generic_Laboratory_Logo.png
+
+File: microscope.png
+URL: https://commons.wikimedia.org/wiki/File:Generic_Microscope_Depiction.png
+
+File: profile_pictures/deufault.png
+Photo by Molly Belle (@mollybelle) on Unsplash
+URL: https://unsplash.com/photos/a-xEUwYSPLw

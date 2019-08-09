@@ -1,23 +1,19 @@
 # Custom files to be ignored
-__pycache__/
 .vscode/
 venv/
-_oldVersions/
 _testFiles/
-_images/
-_data/
-_data/json_database.json
-static/labicon.png
-static/microscopeicon.png
-testfile.py
-app.db 
+LabManager/static/profile_pics/
+LabManager/_data/
+LabManager/_data/json_database.json
+LabManager/app.db 
+dbDraft.xlsx
 bfg.jar
 bfg.java
 *.pyc
 *.pyo
 
 # Byte-compiled / optimized / DLL files
-__pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 

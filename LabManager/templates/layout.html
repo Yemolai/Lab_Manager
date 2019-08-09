@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Oxygen|Allerta+Stencil" rel="stylesheet">
+        <link href="https://unpkg.com/tailwindcss@^1.0.4/dist/tailwind.min.css" rel="stylesheet">
+        {% block head %}{% endblock %}
+        {% if title %}
+            <title>{{ title }}</title>
+        {% else %}
+            <title>Laborator.io</title>
+        {% endif %}
+    </head>
+    <body>
+
+        <!-- Danger Zone -->
+        <nav class="sticky top-0 flex items-baseline justify-between bg-blue-500-light p-6 nav-separate zima-blue">
+
+            <div class="flex items-center flex-no-shrink mr-6">
+                <span id="app-title" class="text-2xl tracking-tight">Laborator.io</span>
+            </div>
+
+            <div class="block md:hidden">
+
+                <button id="menu-button" onclick="navDropdown()" class="bg-blue-300 hover:bg-blue-500 text-blue-700 font-semibold hover:text-gray-300 py-2 px-4 border border-blue-400 hover:border-transparent rounded">
+                    Menu
+                </button>
+
+                <div id="nav-dropdown" class="font-semibold absolute object-none object-right bg-blue-300 border-blue-400 rounded hidden">
+
+                    <a href="/home" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-800 hover:text-gray-300 mt-4 ml-2 mr-4">
+                        Home
+                    </a>
+                    <a href="#" onclick="subDropdownA()" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-800 hover:text-gray-300 mt-4 ml-2 mr-4">
+                            Personnel
+                    </a>
+
+                    <div id="sub-dropdown-a1" class="mt-4 ml-2 mr-4 hidden">
+                        <a href="/frequency" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-800 hover:text-gray-300 mt-4 ml-2 mr-4">
+                            Laboratory Frequency
+                        </a>
+                        <a href="/personnel" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-800 hover:text-gray-300 mt-4 ml-2 mr-4">
+                            Laboratory Personnel
+                        </a>
+                    </div>
+
+                    <a href="#" onclick="subDropdownB()" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-800 hover:text-gray-300 mt-4 ml-2 mr-4">
+                        Equipments
+                    </a>
+
+                    <div id="sub-dropdown-b1" class="mt-4 ml-2 mr-4 hidden">
+                        <a href="/lendings" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-800 hover:text-gray-300 mt-4 ml-2 mr-4">
+                            Equipment Lendings
+                        </a>
+                        <a href="/technical" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-800 hover:text-gray-300 mt-4 ml-2 mr-4">
+                            Technical Problems
+                        </a>
+                        <a href="/inventory" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-800 hover:text-gray-300 mt-4 ml-2 mr-4">
+                            Inventory
+                        </a>
+                    </div>
+
+                    <a href="/fieldtrips" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-800 hover:text-gray-300 mt-4 ml-2 mr-4">
+                        Field Trips
+                    </a>
+                    <a href="/notices" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-800 hover:text-gray-300 mt-4 ml-2 mr-4">
+                        Notice Board
+                    </a>
+                    <a href="/news" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-800 hover:text-gray-300 mt-4 ml-2 mr-4">
+                        News
+                    </a>
+                    <a href="/calendar" class="no-underline block mt-4 ml:2 lg:inline-block lg:mt-0 text-blue-800 hover:text-gray-300 mt-4 ml-2 mr-4">
+                        Calendar
+                    </a>
+                    <a href="/about" class="no-underline block lg:inline-block lg:mt-0 text-blue-700 hover:text-gray-300 mt-4 mb-4 ml-2 mr-4">
+                        About
+                    </a>
+                    {% if current_user.is_authenticated %}
+                        <a href="/account" class="no-underline block lg:inline-block lg:mt-0 text-blue-700 hover:text-gray-300 mt-4 mb-4 ml-2 mr-4">
+                            Account
+                        </a>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <div class="w-full block flex-grow justify-between hidden md:flex md:items-center md:w-auto">
+
+                <div id="nav-desktop" class="font-semibold hidden md:flex">
+
+                    <a href="/home" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-700 hover:text-gray-300 mr-4">
+                        Home
+                    </a>
+                    <a href="#" id="hanged-hover-a" onclick="subDropdownA()" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-700 hover:text-gray-300 mr-4">
+                        Personnel
+                    </a>
+                    <a href="#" id="hanged-hover-b" onclick="subDropdownB()" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-700 hover:text-gray-300 mr-4">
+                        Equipments
+                    </a>
+                    <a href="/fieldtrips" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-700 hover:text-gray-300 mr-4">
+                        Field Trips
+                    </a>
+                    <a href="/notices" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-700 hover:text-gray-300 mr-4">
+                        Notice Board
+                    </a>
+                    <a href="/news" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-700 hover:text-gray-300 mr-4">
+                        News
+                    </a>
+                    <a href="/calendar" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-700 hover:text-gray-300 mr-4">
+                        Calendar
+                    </a>
+                    <a href="/about" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-700 hover:text-gray-300 mr-4">
+                        About
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="inline-block">
+                {% if current_user.is_authenticated %}
+                    <a href="/logout" class="no-underline font-semibold px-4 py-2 leading-none bg-blue-300 border rounded text-blue-700 border-blue-400 hover:border-transparent hover:text-gray-300 hover:bg-blue-500 mt-4 lg:mt-0">Sign Out</a>
+                {% else %}
+                    <a href="/logon" class="no-underline font-semibold px-4 py-2 leading-none bg-blue-300 border rounded text-blue-700 border-blue-400 hover:border-transparent hover:text-gray-300 hover:bg-blue-500 mt-4 lg:mt-0">Sign In</a>
+                {% endif %}
+            </div>
+
+        </nav>
+        <!-- End of Danger Zone -->
+
+        <div class="page-wrapper">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        {% if category == "error" %}
+                            <div class="fixed w-full bg-red-400 rounded-lg text-gray-300 text-sm font-bold px-4 py-3 m-1 z-20">
+                                {{ message }}
+                            </div>
+                        {% else %}
+                            <div class="fixed w-full bg-blue-500 rounded-lg text-gray-300 text-sm font-bold px-4 py-3 m-1 z-20">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="hidden md:block side-menu">
+
+                {% if current_user.is_authenticated %}
+                    <h1>Welcome, {{ current_user.username }}</h1>
+                {% else %}
+                    <h1>Welcome</h1>
+                {% endif %}
+
+                <div id="sub-dropdown-a2" class="font-medium object-none object-right lg:flex-grow hidden">
+                    
+                    <h2 class="inline-block text-blue-700 hover:text-gray-300 mt-4">Laboratory Personnel</h2>
+
+                    <a href="/frequency" class="no-underline inline-block text-blue-700 hover:text-gray-300 m-4">
+                        Laboratory Frequency
+                    </a>
+                    <a href="/personnel" class="no-underline inline-block text-blue-700 hover:text-gray-300 m-4">
+                        Laboratory Personnel
+                    </a>
+
+                </div>
+
+
+                <div id="sub-dropdown-b2" class="font-medium object-none object-right lg:flex-grow hidden">
+                    
+                    <h2 class="inline-block text-blue-700 hover:text-gray-300 mt-4">Laboratory Equipments</h2>
+
+                    <a href="/lendings" class="no-underline inline-block text-blue-700 hover:text-gray-300 m-4">
+                        Equipment Lendings
+                    </a>
+                    <a href="/technical" class="no-underline inline-block text-blue-700 hover:text-gray-300 m-4">
+                        Technical Problems
+                    </a>
+                    <a href="/inventory" class="no-underline inline-block text-blue-700 hover:text-gray-300 m-4">
+                        Inventory
+                    </a>
+
+                </div>
+
+                {% if current_user.is_authenticated %}
+                    <a href="/account" class="absolute pin-b font-semibold no-underline inline-block text-blue-700 hover:text-gray-300 m-4">
+                        My Account
+                    </a>
+                {% endif %}
+
+            </div>
+
+            <div class="main">
+                {% block content %}{% endblock %}
+            </div>
+
+        </div>
+
+        <script>
+            function navDropdown() {
+                document.getElementById("nav-dropdown").classList.toggle("hidden");
+            };
+
+            function subDropdownA() {
+                document.getElementById("sub-dropdown-a1").classList.toggle("hidden");
+                document.getElementById("sub-dropdown-a2").classList.toggle("hidden");
+                document.getElementById("sub-dropdown-a2").classList.toggle("flex");
+                document.getElementById("sub-dropdown-a2").classList.toggle("flex-col");
+                document.getElementById("hanged-hover-a").classList.toggle("text-blue-700");
+                document.getElementById("hanged-hover-a").classList.toggle("text-gray-300");
+            };
+
+            function subDropdownB() {
+                document.getElementById("sub-dropdown-b1").classList.toggle("hidden");
+                document.getElementById("sub-dropdown-b2").classList.toggle("hidden");
+                document.getElementById("sub-dropdown-b2").classList.toggle("flex");
+                document.getElementById("sub-dropdown-b2").classList.toggle("flex-col");
+                document.getElementById("hanged-hover-b").classList.toggle("text-blue-700");
+                document.getElementById("hanged-hover-b").classList.toggle("text-gray-300");
+            };
+        </script>
+    </body>
+</html>
